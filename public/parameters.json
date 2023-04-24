@@ -10,13 +10,6 @@
   ],
   "selectableItems": [
     {
-      "label": "Vector fields",
-      "ids": [
-        "vector_fields"
-      ],
-      "selected": true
-    },
-    {
       "label": "Heatmap 20 08",
       "ids": [
         "lce_concentration_20_08"
