@@ -23,7 +23,7 @@
       "maxzoom": 20,
       "tileSize": 256,
       "tiles": [
-        "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}@2x.png"
+        "https://tile.osm.ch/switzerland/{z}/{x}/{y}.png"
       ],
       "type": "raster"
     }
