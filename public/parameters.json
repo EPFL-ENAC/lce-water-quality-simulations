@@ -17,9 +17,16 @@
       "selected": true
     },
     {
-      "label": "Heatmap",
+      "label": "Heatmap 20 08",
       "ids": [
-        "heatmap"
+        "lce_concentration_20_08"
+      ],
+      "selected": true
+    },
+    {
+      "label": "Heatmap 25 08",
+      "ids": [
+        "lce_concentration_25_08"
       ],
       "selected": true
     }
