@@ -6,25 +6,27 @@
     "lce_concentration_25_08": {
       "type": "vector",
       "tiles": [
-        "https://enacit4r-cdn.epfl.ch/lce-water-quality-simulations/2023-04-24T145734Z/concentration_tiles/{z}/{x}/{y}.pbf"
+        "https://enacit4r-cdn.epfl.ch/lce-water-quality-simulations/2023-04-24T153443Z/concentrations_25_08_tiles/{z}/{x}/{y}.pbf"
       ],
       "minZoom": 0,
-      "maxZoom": 24
+      "maxZoom": 24,
+      "minzoom": 3,
+      "maxzoom": 7
     },
     "lce_concentration_20_08": {
       "type": "vector",
       "tiles": [
-        "https://enacit4r-cdn.epfl.ch/lce-water-quality-simulations/2023-04-24T145734Z/concentration_tiles_20_08/{z}/{x}/{y}.pbf"
+        "https://enacit4r-cdn.epfl.ch/lce-water-quality-simulations/2023-04-24T153443Z/concentrations_20_08_tiles/{z}/{x}/{y}.pbf"
       ],
       "minZoom": 0,
-      "maxZoom": 24
+      "maxZoom": 24,
+      "minzoom": 3,
+      "maxzoom": 7
     },
     "background": {
       "maxzoom": 20,
       "tileSize": 256,
-      "tiles": [
-        "https://tile.osm.ch/switzerland/{z}/{x}/{y}.png"
-      ],
+      "tiles": ["https://tile.osm.ch/switzerland/{z}/{x}/{y}.png"],
       "type": "raster"
     }
   },
@@ -36,17 +38,35 @@
       "type": "raster",
       "source": "background",
       "maxzoom": 24,
-      "paint": {"raster-opacity": {"base": 1.5, "stops": [[0, 0.6], [6, 0.6]]}}
+      "paint": {
+        "raster-opacity": {"base": 1.5, "stops": [[0, 0.6], [6, 0.6]]},
+        "raster-resampling": "nearest"
+      }
     },
     {
       "id": "lce_concentration_25_08",
       "type": "heatmap",
       "source": "lce_concentration_25_08",
       "source-layer": "data",
-      "minzoom": 0,
+      "minzoom": 3,
       "maxzoom": 24,
+      "layout": {"visibility": "visible"},
       "paint": {
-        "heatmap-weight": ["get", "concentration"],
+        "heatmap-weight": [
+          "interpolate",
+          ["exponential", 0.04],
+          ["get", "concentration"],
+          0,
+          0,
+          0.05,
+          0.15,
+          0.35,
+          0.05,
+          0.7,
+          0.9,
+          2.34,
+          1
+        ],
         "heatmap-color": [
           "interpolate",
           ["linear"],
@@ -64,8 +84,24 @@
           1,
           "rgb(178,24,43)"
         ],
-        "heatmap-intensity": 0.9,
-        "heatmap-radius": ["literal", 75]
+        "heatmap-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          8,
+          4,
+          9,
+          9,
+          10,
+          23,
+          11,
+          39,
+          12,
+          60,
+          14,
+          300
+        ],
+        "heatmap-intensity": 0.5
       }
     },
     {
@@ -73,10 +109,21 @@
       "type": "heatmap",
       "source": "lce_concentration_20_08",
       "source-layer": "data",
-      "minzoom": 0,
+      "minzoom": 3,
       "maxzoom": 24,
+      "layout": {"visibility": "visible"},
       "paint": {
-        "heatmap-weight": ["get", "concentration"],
+        "heatmap-weight": [
+          "interpolate",
+          ["linear"],
+          ["get", "concentration"],
+          0,
+          0,
+          0.3,
+          0.5,
+          0.9,
+          1
+        ],
         "heatmap-color": [
           "interpolate",
           ["linear"],
@@ -94,10 +141,28 @@
           1,
           "rgb(178,24,43)"
         ],
-        "heatmap-intensity": 0.9,
-        "heatmap-radius": ["literal", 75]
+        "heatmap-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          8,
+          7,
+          9,
+          8,
+          10,
+          16,
+          11,
+          31,
+          12,
+          60,
+          13,
+          130,
+          15,
+          350
+        ],
+        "heatmap-intensity": 1
       }
     }
   ],
-  "id": "f9p1umo7c"
+  "id": "lce_concentration"
 }
