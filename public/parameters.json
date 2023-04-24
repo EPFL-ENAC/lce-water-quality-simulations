@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/EPFL-ENAC/it4r-webmap/main/schema/parameters.schema.json",
+  "center": {
+    "lat": 46.34,
+    "lng": 6.38
+  },
+  "zoom": 9,
+  "permanentLayerIds": [
+    "background"
+  ],
+  "selectableItems": [
+    {
+      "label": "Vector fields",
+      "ids": [
+        "vector_fields"
+      ],
+      "selected": true
+    },
+    {
+      "label": "Heatmap",
+      "ids": [
+        "heatmap"
+      ],
+      "selected": true
+    }
+  ]
+}

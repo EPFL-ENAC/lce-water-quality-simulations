@@ -55,3 +55,36 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+## exploration:
+
+Gdal netcdf - https://gdal.org/drivers/raster/netcdf.html
+gdal2tiles
+
+maptiler-server https://maptiler-tileserver.readthedocs.io/en/latest/
+
+for generatique the doc
+
+https://github.com/maptiler/tileserver-gl
+
+https://www.maptiler.com
+
+https://github.com/christophenoel/geozarr-spec
+https://github.com/spacebel/geozarr-openlayers
+
+https://mygeodata.cloud/converter/netcdf-to-tif
+
+
+# for database / backend
+
+zod github validation
+koskimas/kysely github
+
+drizzle orm typescript
+nexxel.dev
+
+
+kysely vs drizzle ?
+
+Use https://vee-validate.logaretm.com/v4/integrations/zod-schema-validation/
+
+for validation...

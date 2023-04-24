@@ -1,0 +1,65 @@
+{
+  "version": 8,
+  "name": "Empty Style",
+  "metadata": {"maputnik:renderer": "mbgljs"},
+  "sources": {
+    "lce_concentration": {
+      "type": "vector",
+      "tiles": [
+        "https://enacit4r-cdn.epfl.ch/lce-water-quality-simulations/2023-04-24T145734Z/concentration_tiles/{z}/{x}/{y}.pbf"
+      ],
+      "minZoom": 16,
+      "maxZoom": 24
+    },
+    "background": {
+      "maxzoom": 20,
+      "tileSize": 256,
+      "tiles": [
+        "https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}@2x.png"
+      ],
+      "type": "raster"
+    }
+  },
+  "sprite": "",
+  "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "raster",
+      "source": "background",
+      "maxzoom": 24,
+      "paint": {"raster-opacity": {"base": 1.5, "stops": [[0, 0.6], [6, 0.6]]}}
+    },
+    {
+      "id": "heatmap",
+      "type": "heatmap",
+      "source": "lce_concentration",
+      "source-layer": "data",
+      "minzoom": 0,
+      "maxzoom": 24,
+      "paint": {
+        "heatmap-weight": ["get", "concentration"],
+        "heatmap-color": [
+          "interpolate",
+          ["linear"],
+          ["heatmap-density"],
+          0,
+          "rgba(33,102,172,0)",
+          0.2,
+          "rgb(103,169,207)",
+          0.4,
+          "rgb(209,229,240)",
+          0.6,
+          "rgb(253,219,199)",
+          0.8,
+          "rgb(239,138,98)",
+          1,
+          "rgb(178,24,43)"
+        ],
+        "heatmap-intensity": 0.9,
+        "heatmap-radius": ["literal", 75]
+      }
+    }
+  ],
+  "id": "f9p1umo7c"
+}
