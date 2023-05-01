@@ -1,0 +1,46 @@
+Notations:
+Noro_concentration:norovirus concentration, expressed in genome copies per milliliter (GC/ml)
+
+numda_Noro:Longitude E
+phi_Noro:Latitude N
+These are coordinates in the WGS84 system, the same applies for the Flow_vector parameters.
+The concentration map is similar to jet but I set the lower end to light blue, as in my publication:
+https://ars.els-cdn.com/content/image/1-s2.0-S0043135422013823-gr4.jpg
+
+Velocity_U:the velocity of water in X direction, the unit is m/s
+Velocity_V:the velocity of water in Y direction, the unit is m/s
+These are indicators of the flow condition.
+The length of the arrow vector could be arbitrary I guess, I usually adjust it in matlab GUI when I see the plot.
+
+
+wind speed:    ws = sqrt(u2+v2)
+
+/vector field magnitude  direction
+
+
+JSON.stringify({
+"type": "FeatureCollection",
+"features":a.Noro_concentration.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "Concentration", "concentration": ${el} }, "geometry": { "type": "Point", "coordinates": [${a.numda_Noro[index]}, ${a.phi_Noro[index]} ] } }`)) })
+
+JSON.stringify({
+"type": "FeatureCollection",
+"features":aug_20.Noro_concentration.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "Concentration", "concentration": ${el} }, "geometry": { "type": "Point", "coordinates": [${aug_20.numda_Noro[index]}, ${aug_20.phi_Noro[index]} ] } }`)) })
+
+JSON.stringify({
+"type": "FeatureCollection",
+"features":aug_20.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_20.Velocity_U[index], aug_20.Velocity_V[index])},"Velocity_U": ${el}, "Velocity_V": ${aug_20.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_20.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_20.numda_Flow_vector[index]},${aug_20.phi_Flow_vector[index]},] } }`)) })
+
+
+JSON.stringify({
+"type": "FeatureCollection",
+"features":aug_25.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_25.Velocity_U[index], aug_25.Velocity_V[index])},"Velocity_U": ${el}, "Velocity_U": ${el}, "Velocity_V": ${aug_25.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_25.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_25.numda_Flow_vector[index]},${aug_25.phi_Flow_vector[index]}] } }`)) })
+
+
+# generate tiles
+tippecanoe -Z 0 -z 22 --no-tile-compression -l data concentrations_20_08.geojson -e concentrations_20_08_tiles --force --drop-densest-as-needed
+tippecanoe -Z 0 -z 22 --no-tile-compression -l data concentrations_25_08.geojson -e concentrations_25_08_tiles --force --drop-densest-as-needed
+
+tippecanoe -Z 0 -z 22 --no-tile-compression -l data wind.geojson -e wind_tiles --force --drop-densest-as-needed
+
+# put the data on the server
+s3cmd put --recursive --acl-public --guess-mime-type ./tiles s3://${BUCKET_NAME}/lce-water-quality-simulations/${VERSION_NAME}/
