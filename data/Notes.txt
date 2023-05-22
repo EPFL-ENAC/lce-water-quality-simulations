@@ -28,12 +28,12 @@ JSON.stringify({
 
 JSON.stringify({
 "type": "FeatureCollection",
-"features":aug_20.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_20.Velocity_U[index], aug_20.Velocity_V[index])},"Velocity_U": ${el}, "Velocity_V": ${aug_20.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_20.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_20.numda_Flow_vector[index]},${aug_20.phi_Flow_vector[index]},] } }`)) })
+"features":aug_20.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_20.Velocity_U[index], aug_20.Velocity_V[index]) * 180 / Math.PI},"Velocity_U": ${el}, "Velocity_V": ${aug_20.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_20.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_20.numda_Flow_vector[index]},${aug_20.phi_Flow_vector[index]},] } }`)) })
 
 
 JSON.stringify({
 "type": "FeatureCollection",
-"features":aug_25.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_25.Velocity_U[index], aug_25.Velocity_V[index])},"Velocity_U": ${el}, "Velocity_U": ${el}, "Velocity_V": ${aug_25.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_25.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_25.numda_Flow_vector[index]},${aug_25.phi_Flow_vector[index]}] } }`)) })
+"features":aug_25.Velocity_U.map((el, index) => JSON.parse(`{ "type": "Feature", "properties": { "type": "speed", "angle": ${Math.atan2(aug_25.Velocity_U[index], aug_25.Velocity_V[index]) * 180 / Math.PI},"Velocity_U": ${el}, "Velocity_U": ${el}, "Velocity_V": ${aug_25.Velocity_V[index]}, "speed": ${Math.sqrt(Math.pow(el, 2), Math.pow(aug_25.Velocity_V[index], 2))} }, "geometry": { "type": "Point", "coordinates": [  ${aug_25.numda_Flow_vector[index]},${aug_25.phi_Flow_vector[index]}] } }`)) })
 
 
 # generate tiles
