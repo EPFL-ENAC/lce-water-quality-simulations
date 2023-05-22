@@ -6,7 +6,7 @@ f = open( sys.argv[1] , 'rb' )
 data = json.load(f)
 f.close()
 
-colors = list(Color(rgb=(0.33, 0.102, 0.172)).range_to(Color(rgb=(0.255, 0.255, 0.191)), 100))
+colors = list(Color('#2166ac').range_to(Color('#b2182b'), 100))
 maxcc = max(data['Noro_concentration'])
 #print(colors)
 
