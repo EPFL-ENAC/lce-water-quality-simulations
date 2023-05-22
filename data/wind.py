@@ -8,7 +8,7 @@ f.close()
 
 features = []
 for index, velu in enumerate(data['Velocity_U']):
-    velv = data['Velocity_U'][index]
+    velv = data['Velocity_V'][index]
     angle = math.atan2(velv, velu) * 180 / math.pi
     speed = math.sqrt(math.pow(velu, 2) + math.pow(velv, 2))
     numda = data['numda_Flow_vector'][index]
