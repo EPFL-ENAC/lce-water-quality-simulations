@@ -16,7 +16,8 @@ for index, cc in enumerate(data['Noro_concentration']):
     numda = data['numda_Noro'][index]
     phi = data['phi_Noro'][index]
     score = cc / maxcc
-    color = colors[round(score * 100) - 1]
+    coloridx = round(score * 100)
+    color = colors[coloridx if coloridx < 100 else 99]
     #print(index, cc, score, color, numda, phi)
     feature = {
         'type': 'Feature',
