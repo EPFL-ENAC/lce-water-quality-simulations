@@ -9,13 +9,14 @@ f.close()
 colors = list(Color('#2166ac').range_to(Color('#b2182b'), 100))
 maxcc = max(data['Noro_concentration'])
 #print(colors)
+#print(maxcc)
 
 features = []
 for index, cc in enumerate(data['Noro_concentration']):
     numda = data['numda_Noro'][index]
     phi = data['phi_Noro'][index]
     score = cc / maxcc
-    color = colors[round(score * 10)]
+    color = colors[round(score * 100) - 1]
     #print(index, cc, score, color, numda, phi)
     feature = {
         'type': 'Feature',
