@@ -4,7 +4,6 @@ import type { SelectableItem } from './layerSelector'
 export interface Parameters {
   center?: LngLatLike
   zoom?: number
-  permanentLayerIds?: string[]
   popupLayerIds?: string[]
   selectableItems?: SelectableItem[]
 }

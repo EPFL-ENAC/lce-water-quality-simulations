@@ -5,23 +5,33 @@
     "lng": 6.38
   },
   "zoom": 9,
-  "permanentLayerIds": [
-    "background"
-  ],
   "selectableItems": [
     {
-      "label": "Heatmap 20 08",
+      "label": "August, 20",
       "ids": [
-        "lce_concentration_20_08"
+        "20_08"
       ],
-      "selected": true
+      "selected": true,
+      "legend": {
+        "min": 0,
+        "max": 715,
+        "colors": [
+          "#2166ac", "#2163ac", "#215fac", "#215cac", "#2159ac", "#2155ac", "#2052ac", "#204eac", "#204bac", "#2048ad", "#2044ad", "#2041ad", "#203dad", "#203aad", "#2036ad", "#2033ad", "#202fad", "#1f2cad", "#1f29ad", "#1f25ad", "#1f22ad", "#201fad", "#231fad", "#271fad", "#2a1fad", "#2d1fae", "#311fae", "#341fae", "#371eae", "#3b1eae", "#3e1eae", "#421eae", "#451eae", "#481eae", "#4c1eae", "#4f1eae", "#531eae", "#561eae", "#5a1eae", "#5d1dae", "#601dae", "#641daf", "#671daf", "#6b1daf", "#6e1daf", "#721daf", "#751daf", "#791daf", "#7c1daf", "#801daf", "#831caf", "#871caf", "#8a1caf", "#8e1caf", "#921caf", "#951caf", "#991caf", "#9c1caf", "#a01cb0", "#a31cb0", "#a71cb0", "#ab1bb0", "#ae1bb0", "#b01bae", "#b01baa", "#b01ba7", "#b01ba3", "#b01ba0", "#b01b9c", "#b01b99", "#b01b95", "#b01b92", "#b01a8e", "#b01a8a", "#b11a87", "#b11a83", "#b11a80", "#b11a7c", "#b11a78", "#b11a75", "#b11a71", "#b11a6e", "#b11a6a", "#b11966", "#b11963", "#b1195f", "#b1195b", "#b11958", "#b11954", "#b11950", "#b1194d", "#b21949", "#b21945", "#b21941", "#b2183e", "#b2183a", "#b21836", "#b21833", "#b2182f", "#b2182b"
+        ]
+      }
     },
     {
-      "label": "Heatmap 25 08",
+      "label": "August, 25",
       "ids": [
-        "lce_concentration_25_08"
+        "25_08"
       ],
-      "selected": true
+      "legend": {
+        "min": 0,
+        "max": 3,
+        "colors": [
+          "#2166ac", "#2163ac", "#215fac", "#215cac", "#2159ac", "#2155ac", "#2052ac", "#204eac", "#204bac", "#2048ad", "#2044ad", "#2041ad", "#203dad", "#203aad", "#2036ad", "#2033ad", "#202fad", "#1f2cad", "#1f29ad", "#1f25ad", "#1f22ad", "#201fad", "#231fad", "#271fad", "#2a1fad", "#2d1fae", "#311fae", "#341fae", "#371eae", "#3b1eae", "#3e1eae", "#421eae", "#451eae", "#481eae", "#4c1eae", "#4f1eae", "#531eae", "#561eae", "#5a1eae", "#5d1dae", "#601dae", "#641daf", "#671daf", "#6b1daf", "#6e1daf", "#721daf", "#751daf", "#791daf", "#7c1daf", "#801daf", "#831caf", "#871caf", "#8a1caf", "#8e1caf", "#921caf", "#951caf", "#991caf", "#9c1caf", "#a01cb0", "#a31cb0", "#a71cb0", "#ab1bb0", "#ae1bb0", "#b01bae", "#b01baa", "#b01ba7", "#b01ba3", "#b01ba0", "#b01b9c", "#b01b99", "#b01b95", "#b01b92", "#b01a8e", "#b01a8a", "#b11a87", "#b11a83", "#b11a80", "#b11a7c", "#b11a78", "#b11a75", "#b11a71", "#b11a6e", "#b11a6a", "#b11966", "#b11963", "#b1195f", "#b1195b", "#b11958", "#b11954", "#b11950", "#b1194d", "#b21949", "#b21945", "#b21941", "#b2183e", "#b2183a", "#b21836", "#b21833", "#b2182f", "#b2182b"
+        ]
+      }
     }
   ]
 }

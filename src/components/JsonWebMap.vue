@@ -10,28 +10,37 @@ const props = defineProps<{
   parametersUrl: string
 }>()
 
+const references = [
+  {
+    title: "Coupling remote sensing and particle tracking to estimate trajectories in large water bodies: 10.1016/j.jag.2022.102809",
+    url: "https://doi.org/10.1016/j.jag.2022.102809"
+  },
+  {
+    title: "Data",
+    url: "https://zenodo.org/record/6511377#.ZFikIuxBzrw"
+  },
+  {
+    title: "Original map",
+    url: "https://ars.els-cdn.com/content/image/1-s2.0-S0043135422013823-gr4.jpg"
+  },
+  {
+    title: "Environmental Chemistry Laboratory - LCE",
+    url: "https://www.epfl.ch/labs/lce/"
+  }
+]
+
 const map = ref<InstanceType<typeof MapLibreMap>>()
-const selectedlayerIds = ref<string[]>([])
+const selectedlayerId = ref<string>('')
 const parameters = shallowRef<Parameters>({})
 
-const filterIds = computed<string[]>(() => [
-  ...(parameters.value.permanentLayerIds ?? []),
-  ...selectedlayerIds.value
-])
-const legendItems = computed(() =>
-  (parameters.value.selectableItems ?? [])
-    .flatMap((item) => ('children' in item ? item.children : item))
-    .filter((item) => item.ids.some((id) => filterIds.value.includes(id)))
-    .flatMap((item) =>
-      item.legend !== undefined
-        ? [
-            {
-              label: item.label,
-              legend: item.legend
-            }
-          ]
-        : []
-    )
+const selectedLayer = computed(() =>
+  parameters.value.selectableItems ? parameters.value.selectableItems
+    .filter((item) => item.ids.some((id) => selectedlayerId.value === id))
+    .pop() : undefined
+)
+
+const selectedLegendColors = computed(() =>
+  selectedLayer.value && selectedLayer.value.legend ? selectedLayer.value.legend.colors : undefined
 )
 
 watch(
@@ -56,20 +65,38 @@ watch(
       <v-col cols="12" md="3" sm="6" class="pl-6">
         <v-row>
           <v-col>
-            <LayerSelector v-model="selectedlayerIds" :items="parameters.selectableItems" />
+            <LayerSelector v-model="selectedlayerId" :items="parameters.selectableItems" />
           </v-col>
         </v-row>
         <v-divider class="border-opacity-100 mx-n3" />
         <v-row>
           <v-col>
-            <v-card title="Legends" flat>
+            <v-card title="Legend" flat>
               <v-card-text>
-                <v-row>
-                  <v-col v-for="(item, index) in legendItems" :key="index" cols="12">
-                    <h3>{{ item.label }}</h3>
-                    <div>{{ item.legend }}</div>
-                  </v-col>
+                <v-row class="mt-3 mb-3">
+                  <b>GC/ml</b>
                 </v-row>
+                <v-row class="mt-3 mb-3" v-if="selectedLayer">
+                  <div class="mr-1"><b>{{ selectedLayer.legend.min }}</b></div>
+                  <div v-for="color in selectedLegendColors" :style="'height: 20px; width: 2px; background-color: ' + color">  </div>
+                  <div class="ml-1"><b>{{ selectedLayer.legend.max }}</b></div>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-divider class="border-opacity-100 mx-n3" />
+        <v-row>
+          <v-col>
+            <v-card title="References" flat>
+              <v-card-text>
+                <v-list tag='ul'>
+                  <template v-for="item in references">
+                    <v-list-item tag='li'>
+                      <a :href="item.url" target="_blank">{{ item.title }}</a>
+                    </v-list-item>
+                  </template>
+                </v-list>
               </v-card-text>
             </v-card>
           </v-col>
@@ -81,7 +108,7 @@ watch(
           ref="map"
           :center="parameters.center"
           :style-spec="styleUrl"
-          :filter-ids="filterIds"
+          :filter-id="selectedlayerId"
           :popup-layer-ids="parameters.popupLayerIds"
           :zoom="parameters.zoom"
         />

@@ -106,12 +106,6 @@
         "center": {
             "$ref": "#/definitions/maplibregl.LngLatLike"
         },
-        "permanentLayerIds": {
-            "items": {
-                "type": "string"
-            },
-            "type": "array"
-        },
         "popupLayerIds": {
             "items": {
                 "type": "string"
